@@ -2,17 +2,21 @@ import SingleImage from "../SingleImage/SingleImage";
 import "./images.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import PuffLoader from "react-spinners/PuffLoader";
 
 const Images = () => {
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const scrollRef = useRef(null);
   const fetchimages = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(
-        `https://api.nasa.gov/planetary/apod?api_key=uSx2Df45Xgfgf6PnGLiANGUUiOO2RViR8fjteRiq&count=10`
+        `https://api.nasa.gov/planetary/apod?api_key=uSx2Df45Xgfgf6PnGLiANGUUiOO2RViR8fjteRiq&count=100`
       );
       setImages(res.data);
       console.log(res.data);
+      setLoading(false);
     } catch (error) {}
   };
   const scrollDown = () => {
@@ -36,14 +40,27 @@ const Images = () => {
       <div className="imagesWrapper">
         <div className="filterContainer" ref={scrollRef}>
           <h1 className="filterHeading">FILTER:</h1>
-          <input type="date" className="dateInput" />
-          <input type="date" className="dateInput" />
+          <div className="dateFilters">
+
+            <span className="labelText">From:</span>
+            <input type="date" className="dateInput" />
+            <span className="labelText">To: </span>
+            <input type="date" className="dateInput" />
+            <button className="filterButton">FILTER</button>
+          </div>
         </div>
-        <div className="imagesContainer">
-          {images.map((image) => {
-            return <SingleImage image={image} key={image} />;
-          })}
-        </div>
+        {loading ? (
+          <div className="loaderContainer">
+            <h1 className="loaderText">Fetching Photos...</h1>
+            <PuffLoader className="loader" color={"#ffffff"} size={200} />
+          </div>
+        ) : (
+          <div className="imagesContainer">
+            {images.map((image) => {
+              return <SingleImage image={image} key={image} />;
+            })}
+          </div>
+        )}
       </div>
     </>
   );

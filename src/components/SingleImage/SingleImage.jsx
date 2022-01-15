@@ -1,5 +1,7 @@
 import "./singleimage.css";
 import ReactPlayer from "react-player";
+import LazyLoad from "react-lazyload";
+
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -47,6 +49,7 @@ import {
 import { useState } from "react";
 const SingleImage = ({ image }) => {
   const [readMore, setReadMore] = useState(false);
+  const [liked, setLiked] = useState(false);
   return (
     <div className="singleImageWrapper">
       <div className="singleImageContainer">
@@ -73,10 +76,23 @@ const SingleImage = ({ image }) => {
           {readMore
             ? image.explanation
             : `${image.explanation.substring(0, 200)}...`}
-          <button className="readMoreBtn" onClick={() => setReadMore(!readMore)}>
+          <button
+            className="readMoreBtn"
+            onClick={() => setReadMore(!readMore)}
+          >
             {readMore ? "show less" : "  read more"}
           </button>
         </p>
+        <div className="likeContainer">
+          <button className="likeButton" onClick={() => setLiked(!liked)}>
+            <span className="likeText">{!liked ? "Like" : "Unlike"}</span>
+            {liked?(<i
+              style={{ color: 'crimson' }}
+              className={`heartIcon fa-solid fa-heart `}
+            ></i>):(<i class="fa-regular fa-heart"></i>)}
+
+          </button>
+        </div>
         <div className="shareContainer">
           <FacebookShareButton
             url={image.url}
@@ -87,6 +103,15 @@ const SingleImage = ({ image }) => {
           >
             <FacebookIcon size={32} round />
           </FacebookShareButton>
+          <TwitterShareButton
+            url={image.url}
+            quote={image.title}
+            hashtag={"#NASA"}
+            description={image.explanation}
+            className="sharesingle"
+          >
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
           <WhatsappShareButton
             url={image.url}
             quote={image.title}
