@@ -44,7 +44,9 @@ import {
   WhatsappIcon,
   WorkplaceIcon,
 } from "react-share";
+import { useState } from "react";
 const SingleImage = ({ image }) => {
+  const [readMore, setReadMore] = useState(false);
   return (
     <div className="singleImageWrapper">
       <div className="singleImageContainer">
@@ -67,14 +69,21 @@ const SingleImage = ({ image }) => {
       <div className="singleImageDescriptionContainer">
         <h1 className="imageTitle">{image.title}</h1>
         <h4 className="imageDate">Dated:{image.date}</h4>
-        <p className="imageDescription">{image.explanation}</p>
+        <p className="imageDescription">
+          {readMore
+            ? image.explanation
+            : `${image.explanation.substring(0, 200)}...`}
+          <button className="readMoreBtn" onClick={() => setReadMore(!readMore)}>
+            {readMore ? "show less" : "  read more"}
+          </button>
+        </p>
         <div className="shareContainer">
           <FacebookShareButton
             url={image.url}
             quote={image.title}
             hashtag={"#NASA"}
             description={image.explanation}
-            className="Demo__some-network__share-button"
+            className="sharesingle"
           >
             <FacebookIcon size={32} round />
           </FacebookShareButton>
@@ -83,11 +92,29 @@ const SingleImage = ({ image }) => {
             quote={image.title}
             hashtag={"#NASA"}
             description={image.explanation}
-            className="Demo__some-network__share-button"
+            className="sharesingle"
           >
             <WhatsappIcon size={32} round />
           </WhatsappShareButton>
           <WhatsappShareButton />
+          <RedditShareButton
+            url={image.url}
+            quote={image.title}
+            hashtag={"#NASA"}
+            description={image.explanation}
+            className="sharesingle"
+          >
+            <RedditIcon size={32} round />
+          </RedditShareButton>
+          <TelegramShareButton
+            url={image.url}
+            quote={image.title}
+            hashtag={"#NASA"}
+            description={image.explanation}
+            className="sharesingle"
+          >
+            <TelegramIcon size={32} round />
+          </TelegramShareButton>
         </div>
       </div>
     </div>

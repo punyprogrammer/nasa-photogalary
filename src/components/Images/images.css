@@ -5,6 +5,52 @@
   width: 80vw;
   margin: 0 auto;
 }
+.filterContainer {
+  padding: 20px;
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+  color: white;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headerWrapper {
+  height: 100vh;
+  background-size: cover;
+  background-position: top;
+  background-image: url(/public/images/nasa.jpg);
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+  position: relative;
+}
+.headingContainer {
+  position: absolute;
+  color: antiquewhite;
+  left: 42%;
+  top: 45%;
+}
+.headingTitle {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 30px;
+}
+.headingSubtitle {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+}
+.exploreMore {
+  border: none;
+  padding: 15px;
+  border-radius: 20px;
+  margin-top: 20px;
+  background-color: rgb(72, 144, 172);
+  color: white;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 480px) {
   .imagesWrapper {
     width: 96vw;
