@@ -61,7 +61,7 @@
   font-size: 30px;
 }
 .headingSubtitle {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 20px;
   font-weight: 500;
 }
@@ -90,12 +90,27 @@
     flex-direction: column;
     justify-content: space-between;
   }
+  .headingContainer {
+    top: 52%;
+    left: 10%;
+    width: 80%;
+    text-align: center;
+  }
+  .headingTitle {
+    width: 100%;
+  }
+  .headingSubtitle {
+    text-transform: capitalize;
+  }
   .dateInput {
     margin-top: 6px;
     width: 100%;
   }
   .filterButton {
+    display: inline-block;
+    margin-right: 30%;
     margin-top: 8px;
     width: 70%;
+    margin: 0 auto;
   }
 }

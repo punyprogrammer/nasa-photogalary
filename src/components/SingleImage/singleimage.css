@@ -61,6 +61,7 @@
   background-color: #ffffff;
   color: black;
   width: 120px;
+  cursor: pointer;
 }
 .liked {
   color: crimson;
@@ -69,7 +70,6 @@
   margin-left: 12px;
   cursor: pointer;
   color: white;
-  transition: all 1s ease-in-out;
 }
 .loader {
   color: white;

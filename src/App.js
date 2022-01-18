@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/Header/Header";
+
 import Images from "./components/Images/Images";
 const apiKey = process.env.REACT_APP_NASA_KEY;
 console.log(apiKey);
